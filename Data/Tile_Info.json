@@ -1,0 +1,19 @@
+{
+  "Sheet1": {
+    "Carpet": {
+      "Type": "Floor",
+      "Resource": "Cloth",
+      "Needed": 3
+    },
+    "Stone": {
+      "Type": "Floor",
+      "Resource": "Stone",
+      "Needed": 4
+    },
+    "Stone Wall": {
+      "Type": "Wall",
+      "Resource": "Stone",
+      "Needed": 8
+    }
+  }
+}

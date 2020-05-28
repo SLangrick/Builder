@@ -1,0 +1,38 @@
+{
+  "Carpet": {
+    "Type": "Floor",
+    "Resource": "Cloth",
+    "Needed": 3,
+	"Visible": "True"
+  },
+  "Grass": {
+    "Type": "Floor",
+    "Resource": "Dirt",
+    "Needed": 1,
+	"Visible": "True"
+  },
+  "Stone Wall": {
+    "Type": "Walls",
+    "Resource": "Stone",
+    "Needed": 8,
+	"Visible": "True"
+  },
+  
+  "Chair": {
+	"Type": "Objects",
+    "Resource": "Wood",
+    "Needed": 8,
+	"Visible": "True",
+	"Rotate":"Chair1"
+  },
+  "Chair1": {
+	"Type": "Objects",
+    "Resource": "Wood",
+    "Needed": 8,
+	"Visible": "False",
+	"Rotate":"Chair"
+  }
+  
+  
+  
+}
