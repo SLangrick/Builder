@@ -49,17 +49,8 @@ func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_END):
 		while Zones.get_dorm_beds() > 0:
 			var student = Student.instance()
-			var SpriteHead = AtlasTexture.new();
-			SpriteHead.atlas = SpriteHeads.tile_get_texture(0)
-			SpriteHead.region = SpriteHeads.tile_get_region(0)
-			SpriteHead.region= SpriteHead.region.grow_individual(0,0,-96,0)
-			var SpriteBody = AtlasTexture.new();
-			SpriteBody.atlas = SpriteBodies.tile_get_texture(0)
-			SpriteBody.region = SpriteBodies.tile_get_region(0)
-			print(str(SpriteBody.region))
-			SpriteBody.region= SpriteBody.region.grow_individual(0,0,-96,0)
-			print(str(SpriteBody.region))
-			student.set_variables(random_Student_Variables(), SpriteHead, SpriteBody)
+			
+			student.set_variables(random_Student_Variables(), 0, 0)
 			$Area/Students.add_child(student)
 	if Input.is_key_pressed(KEY_R):
 		if mode == BUILD:

@@ -1,16 +1,17 @@
 extends KinematicBody2D
 
 onready var nav : Navigation2D = $"../../Navigation2D"
-onready var mainScene = $"../../.."
-onready var toBuild = $"../../ToBuild"
+# onready var mainScene = $"../../.."
 onready var Map = $"../../Navigation2D/Pathable"
-onready var Objects = $"../../Object"
+# onready var Objects = $"../../Object"
 onready var Zones = $"../../Zones"
+onready var Controller = $".."
+
 
 export var speed = 250
 
-var head_texture
-var body_texture
+var head_Index
+var body_Index
 
 var path_navigate : PoolVector2Array
 var desired_location
@@ -99,12 +100,43 @@ func move_to_location(delta):
 	if path_navigate.size() > 0:
 		var d: float = position.distance_to(path_navigate[0])
 		if d > 5:
-			print(str(position.direction_to(path_navigate[0])))
+			movement_sprite_change(position.direction_to(path_navigate[0]))
 			position = position.linear_interpolate(path_navigate[0], (speed * delta)/d)
 		else:
 			path_navigate.remove(0)
 		if path_navigate.empty():
 			state = WAITING
+			
+func movement_sprite_change(Vect: Vector2):
+	var VectX = Vect.x
+	var VectY = Vect.y
+	if VectX < 0:
+		VectX = VectX * -1
+	if VectY < 0:
+		VectY = VectY * -1
+	#32, -64
+	#64, -32
+	#96, 0
+	if VectX > VectY:
+		if Vect.x < 0:
+			#left
+			set_sprite(64)
+		else:
+			#right
+			set_sprite(96)
+	elif VectX < VectY:
+		if Vect.y < 0:
+			set_sprite(32)
+		else:
+			set_sprite(0)
+			
+func set_sprite(Direction):
+	#Direction = region offset
+	var head = Controller.Set_Head(head_Index, Gender, Direction)
+	var body = Controller.Set_Body(head_Index, Gender, Direction)
+	$Node2D/Head.texture = head
+	$Node2D/Body.texture = body
+	
 #Mouse Input
 func _on_Player_mouse_entered() -> void:
 	$lblName.visible = true
@@ -131,8 +163,8 @@ func set_variables(Content, SpriteHead, SpriteBody):
 	$lblName.text = str(FirstName) + " " + str(LastName)
 	print($lblName.text)
 	
-	$Node2D/Head.texture = SpriteHead
-	$Node2D/Body.texture = SpriteBody
+	head_Index = SpriteHead
+	body_Index = SpriteBody
 func print_out():
 	print("Gender " + str(Gender))
 	print("Name " + FirstName + " " + LastName)

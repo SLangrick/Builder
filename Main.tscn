@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
+[ext_resource path="res://Sprite_Controller.gd" type="Script" id=1]
 [ext_resource path="res://Worker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Button_Inputs.gd" type="Script" id=4]
@@ -59,9 +60,10 @@ format = 1
 
 [node name="Students" type="YSort" parent="Area"]
 position = Vector2( -1, 0 )
+script = ExtResource( 1 )
 
 [node name="Camera" parent="Area" instance=ExtResource( 3 )]
-position = Vector2( 516.285, 501.714 )
+position = Vector2( 115.338, 91.0601 )
 collision_layer = 0
 collision_mask = 0
 
@@ -88,25 +90,25 @@ __meta__ = {
 }
 
 [node name="Tabs" type="Tabs" parent="CanvasLayer"]
-margin_left = 197.0
-margin_top = 174.0
-margin_right = 445.0
-margin_bottom = 359.0
+margin_left = 30.9058
+margin_top = 85.8265
+margin_right = 278.906
+margin_bottom = 270.827
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Tabs"]
-margin_left = -83.0
-margin_top = 302.0
-margin_right = 2.0
-margin_bottom = 423.0
+margin_left = 84.0
+margin_top = 420.0
+margin_right = 183.0
+margin_bottom = 512.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Zones" type="Button" parent="CanvasLayer/Tabs/VBoxContainer"]
-margin_right = 85.0
+margin_right = 99.0
 margin_bottom = 20.0
 text = "Zones"
 __meta__ = {
@@ -115,19 +117,19 @@ __meta__ = {
 
 [node name="Paths" type="Button" parent="CanvasLayer/Tabs/VBoxContainer"]
 margin_top = 24.0
-margin_right = 85.0
+margin_right = 99.0
 margin_bottom = 44.0
 text = "Paths"
 
 [node name="Walls" type="Button" parent="CanvasLayer/Tabs/VBoxContainer"]
 margin_top = 48.0
-margin_right = 85.0
+margin_right = 99.0
 margin_bottom = 68.0
 text = "Walls"
 
 [node name="Objects" type="Button" parent="CanvasLayer/Tabs/VBoxContainer"]
 margin_top = 72.0
-margin_right = 85.0
+margin_right = 99.0
 margin_bottom = 92.0
 text = "Objects"
 

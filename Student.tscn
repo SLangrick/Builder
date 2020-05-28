@@ -346,7 +346,7 @@ visible = false
 position = Vector2( 0.25, -30.5 )
 frames = SubResource( 52 )
 animation = "Walk_Left"
-frame = 3
+frame = 6
 playing = true
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -386,7 +386,7 @@ visible = false
 position = Vector2( 1.31, -69.0885 )
 frames = ExtResource( 4 )
 animation = "Chat"
-frame = 1
+frame = 3
 playing = true
 [connection signal="input_event" from="." to="." method="_on_Player_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Player_mouse_entered"]
