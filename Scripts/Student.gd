@@ -14,6 +14,8 @@ var head_Index
 var body_Index
 
 var path_navigate : PoolVector2Array
+var Direction
+var DirectionString
 var desired_location
 
 enum {
@@ -113,7 +115,9 @@ func move_to_location(delta):
 	if path_navigate.size() > 0:
 		var d: float = position.distance_to(path_navigate[0])
 		if d > 5:
-			movement_sprite_change(position.direction_to(path_navigate[0]))
+			if !Direction == position.direction_to(path_navigate[0]):
+				Direction = position.direction_to(path_navigate[0])
+				movement_sprite_change(position.direction_to(path_navigate[0]))
 			position = position.linear_interpolate(path_navigate[0], (speed * delta)/d)
 		else:
 			path_navigate.remove(0)
@@ -133,15 +137,25 @@ func movement_sprite_change(Vect: Vector2):
 	if VectX > VectY:
 		if Vect.x < 0:
 			#left
-			set_sprite(64)
+			if !DirectionString == "Left":
+				DirectionString = "Left"
+				set_sprite(64)
 		else:
 			#right
-			set_sprite(96)
+			if !DirectionString == "Right":
+				DirectionString = "Right"
+				set_sprite(96)
 	elif VectX < VectY:
 		if Vect.y < 0:
-			set_sprite(32)
+			#Down
+			if !DirectionString == "Down":
+				DirectionString = "Down"
+				set_sprite(32)
 		else:
-			set_sprite(0)
+			#Up
+			if !DirectionString == "Up":
+				DirectionString = "Up"
+				set_sprite(0)
 			
 func set_sprite(Direction):
 	#Direction = region offset

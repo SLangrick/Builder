@@ -189,37 +189,50 @@ func random_Student_Variables():
 	return Content
 
 func set_class(Classes, class_number, Magic):
-	var sorted = Magic.duplicate()
-	sorted.sort()
-	sorted.invert()
-	var i = class_number
 	var free = Zones.get_classes(class_number)
-	for sort in sorted:
-		var pos = Magic.find(sort)
-		var name_class
-		if pos == 0:
-			name_class = "Abjuration"
-		elif pos == 1:
-			name_class ="Alchemy"
-		elif pos == 2:
-			name_class = "Beastology"
-		elif pos == 3:
-			name_class = "Conjuration"
-		elif pos == 4:
-			name_class = "Divination"
-		elif pos == 5:
-			name_class = "Enchantment"
-		elif pos == 6:
-			name_class = "Illusion"
-		elif pos == 7:
-			name_class = "Nature"
-		if Classes.has(name_class):
-			pass
-		else:
-			if free[pos] > 0:
-				Zones.set_class(class_number, pos)
-				return name_class
-	return "FREE"
+	for i in Classes:
+		print(i)
+		if free.has(i):
+			free.erase(i)
+	if free.size() == 0:
+		return "FREE"
+	var BestClassNum = 0
+	var BestClass
+	for i in free:
+		if i == "Abjuration":
+			if Magic[0] > BestClassNum:
+				BestClassNum = Magic[0]
+				BestClass = i
+		elif i == "Alchemy":
+			if Magic[1] > BestClassNum:
+				BestClassNum = Magic[1]
+				BestClass = i
+		elif i == "Beastology":
+			if Magic[2] > BestClassNum:
+				BestClassNum = Magic[2]
+				BestClass = i
+		elif i == "Conjuration":
+			if Magic[3] > BestClassNum:
+				BestClassNum = Magic[3]
+				BestClass = i
+		elif i == "Divination":
+			if Magic[4] > BestClassNum:
+				BestClassNum = Magic[4]
+				BestClass = i
+		elif i == "Enchantment":
+			if Magic[5] > BestClassNum:
+				BestClassNum = Magic[5]
+				BestClass = i
+		elif i == "Illusion":
+			if Magic[6] > BestClassNum:
+				BestClassNum = Magic[6]
+				BestClass = i
+		elif i == "Nature":
+			if Magic[7] > BestClassNum:
+				BestClassNum = Magic[7]
+				BestClass = i
+		
+	return BestClass
 	
 
 func Update_Mouse_Highlight():

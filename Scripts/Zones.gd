@@ -48,7 +48,6 @@ func _ready():
 	for i in obj.get_tiles():
 		if !$"../Object".get_cell(i.x,i.y) == -1:
 			obj.add_objects(i)
-			obj.Is_Class = 6
 	zones.append(obj)
 
 func set_class_seat(activity):
@@ -113,11 +112,19 @@ func set_dorm():
 			return bed
 			
 func get_classes(class_number):
-	var Class = [0,0,0,0,0,0,0,0]
+#	var Class = [0,0,0,0,0,0,0,0]
+#	for i in zones:
+#		if i.Is_Class > -1:
+#			Class[i.Is_Class] = Class[i.Is_Class] + i.get_Free(class_number)
+#	return Class
+	
+	var Classes = []
 	for i in zones:
 		if i.Is_Class > -1:
-			Class[i.Is_Class] = Class[i.Is_Class] + i.get_Free(class_number)
-	return Class
+			if i.get_Free(class_number) > 0:
+				if !Classes.has(i.get_type()):
+					Classes.append(i.get_type())
+	return Classes
 			
 func set_class(class_number, class_type):
 	for i in zones:
