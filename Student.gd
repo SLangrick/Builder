@@ -5,6 +5,7 @@ onready var nav : Navigation2D = $"../../Navigation2D"
 onready var Map = $"../../Navigation2D/Pathable"
 # onready var Objects = $"../../Object"
 onready var Zones = $"../../Zones"
+onready var AreaNode = $"../.."
 onready var Controller = $".."
 
 
@@ -30,6 +31,7 @@ var FirstName = ""
 var LastName = ""
 var Age = 11
 var Grade = 1
+var House = "House1"
 var Dorm
 
 var Classes = ["Alchemy", "Conjuration", "Enchanting"]
@@ -55,16 +57,17 @@ func _physics_process(delta):
 			#insert decision
 			
 			desired_location = Dorm
-			set_action_location(desired_location)
+			set_movement_location(desired_location)
 		MOVE:
 			move_to_location(delta)
 		WAITING:
 			pass
 		FREE:
-			desired_location = Vector2(1,1)
-			set_action_location(desired_location)
+			#insert house
+			desired_location = AreaNode.freetime(1)
+			set_free_location(desired_location)
 
-func set_action_location(location):
+func set_movement_location(location):
 	var tile_pos = Map.map_to_world(location)
 	tile_pos = Vector2(tile_pos.x + (Map.cell_size.x / 2), tile_pos.y + (Map.cell_size.y / 1.9))
 	path_navigate = nav.get_simple_path(position, tile_pos, false)
@@ -76,6 +79,17 @@ func remove_seat():
 	#Remove from seat array
 	if !desired_location == Dorm:
 		Zones.remove_assigned_seat(current_activity, desired_location)
+		
+func set_free_location(location):
+	if location == "Cloudwatch":
+		var used = Map.get_used_cells_by_id(0)
+		var num = randi() % used.size()
+		desired_location = Dorm
+		set_movement_location(used[num])
+	else:
+		set_activity(location)
+		
+
 func set_activity(activity):
 	#Setting the current activity
 	if activity == "CLASS1":
@@ -92,7 +106,7 @@ func set_activity(activity):
 	#Set seat or If no seats available then free
 	if Zones.get_class_seats(activity) > 0:
 		desired_location = Zones.set_class_seat(activity)
-		set_action_location(desired_location)
+		set_movement_location(desired_location)
 	else:
 		state = FREE
 
