@@ -124,16 +124,16 @@ func _process(delta):
 func _on_CanvasLayer_Mode_Change() -> void:
 	if mode == PLAY:
 		mode = BUILD
-		$CanvasLayer/Button.text = "Build Mode"
-		$CanvasLayer/Button.update()
+		$CanvasLayer/HBoxContainer/Button.text = "Build Mode"
+		$CanvasLayer/HBoxContainer/Button.update()
 		$CanvasLayer/ItemList.visible = true
 		$CanvasLayer/Tabs.visible = true
 		
 		$Area/Zones.visible = true
 	else:
 		mode = PLAY
-		$CanvasLayer/Button.text = "Play Mode"
-		$CanvasLayer/Button.update()
+		$CanvasLayer/HBoxContainer/Button.text = "Play Mode"
+		$CanvasLayer/HBoxContainer/Button.update()
 		$CanvasLayer/ItemList.visible = false
 		$CanvasLayer/Tabs.visible = false
 		

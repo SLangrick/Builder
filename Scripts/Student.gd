@@ -5,7 +5,6 @@ onready var nav : Navigation2D = $"../../Navigation2D"
 onready var Map = $"../../Navigation2D/Pathable"
 # onready var Objects = $"../../Object"
 onready var Zones = $"../../Zones"
-onready var AreaNode = $"../.."
 onready var Controller = $".."
 
 
@@ -64,7 +63,7 @@ func _physics_process(delta):
 			pass
 		FREE:
 			#insert house
-			desired_location = AreaNode.freetime(1)
+			desired_location =	Zones.set_freetime(House)
 			set_free_location(desired_location)
 
 func set_movement_location(location):
