@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+onready var Main = $"../../.."
 onready var nav : Navigation2D = $"../../Navigation2D"
 # onready var mainScene = $"../../.."
 onready var Map = $"../../Navigation2D/Pathable"
@@ -91,19 +92,22 @@ func set_free_location(location):
 		
 func set_activity(activity):
 	if current_activity == Classes[0] or current_activity == Classes[1] or current_activity == Classes[2]:
-		add_stats()
+		if !current_activity == "FREE":
+			add_stats()
 	#Setting the current activity
 	if activity == "CLASS1":
 		activity = Classes[0]
+		if activity == "FREE":
+			Classes[0] = Main.set_class(Classes, "CLASS1", Magic)
 	elif activity == "CLASS2":
 		activity = Classes[1]
+		if activity == "FREE":
+			Classes[1] = Main.set_class(Classes, "CLASS2", Magic)
 	elif activity == "CLASS3":
 		activity = Classes[2]
+		if activity == "FREE":
+			Classes[2] = Main.set_class(Classes, "CLASS3", Magic)
 	current_activity = activity
-	#If no class assigned then Free
-	if activity == "FREE":
-		state = FREE
-		return
 	#Set seat or If no seats available then free
 	if Zones.get_zone_seats(activity) > 0:
 		desired_location = Zones.set_zone_seat(activity)

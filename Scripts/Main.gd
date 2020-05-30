@@ -195,7 +195,7 @@ func set_class(Classes, class_number, Magic):
 			free.erase(i)
 	if free.size() == 0:
 		return "FREE"
-	var BestClassNum = 0
+	var BestClassNum = -1
 	var BestClass
 	var BestClassID
 	for i in free:
@@ -240,6 +240,8 @@ func set_class(Classes, class_number, Magic):
 				BestClass = i
 				BestClassID = 7
 	Zones.set_class(class_number, BestClassID)
+	if BestClass == null:
+		print("here")
 	return BestClass
 	
 
