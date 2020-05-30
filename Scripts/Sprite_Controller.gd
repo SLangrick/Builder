@@ -8,7 +8,8 @@ func Set_Head(Index, Gender, Direction):
 	SpriteHead.atlas = SpriteHeads.tile_get_texture(Index)
 	SpriteHead.region = SpriteHeads.tile_get_region(Index)
 	SpriteHead.region= SpriteHead.region.grow_individual(0,0,-96,0)
-	SpriteHead.region.position = Vector2(Direction, 0)
+	var region = SpriteHead.region.position.y
+	SpriteHead.region.position = Vector2(Direction, region)
 	return SpriteHead
 
 func Set_Body(Index, Gender, Direction):

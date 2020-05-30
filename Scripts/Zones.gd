@@ -50,14 +50,14 @@ func _ready():
 			obj.add_objects(i)
 	zones.append(obj)
 
-func set_class_seat(activity):
+func set_zone_seat(activity):
 	for i in zones:
 		if i.get_type() == str(activity) and i.get_Unassinged_Number() > 0:
 			var seat = i.get_seat()
 			return seat
 	return -1
 
-func get_class_seats(activity):
+func get_zone_seats(activity):
 	var seats = 0
 	for i in zones:
 		if i.get_type() == str(activity):
@@ -112,12 +112,6 @@ func set_dorm():
 			return bed
 			
 func get_classes(class_number):
-#	var Class = [0,0,0,0,0,0,0,0]
-#	for i in zones:
-#		if i.Is_Class > -1:
-#			Class[i.Is_Class] = Class[i.Is_Class] + i.get_Free(class_number)
-#	return Class
-	
 	var Classes = []
 	for i in zones:
 		if i.Is_Class > -1:
@@ -135,12 +129,12 @@ func set_class(class_number, class_type):
 func set_freetime(house):
 	Freetime_Activities.append("Cloudwatch")
 	Freetime_Activities.append("Cloudwatch")
-	var library = get_class_seats("Library")
+	var library = get_zone_seats("Library")
 	var counter = 0
 	while counter < library:
 		counter = counter + 1
 		Freetime_Activities.append("Library")
-	var HouseSeats = get_class_seats(house)
+	var HouseSeats = get_zone_seats(house)
 	counter = 0
 	while counter < HouseSeats:
 		counter =+ 1

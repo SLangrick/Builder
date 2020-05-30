@@ -42,15 +42,15 @@ var mode = PLAY
 var tile = PATH
 
 func _ready() -> void:
-	print(str(ImportData.tile_data["Carpet"].Type))
 	pass
 
 func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_END):
 		while Zones.get_dorm_beds() > 0:
 			var student = Student.instance()
-			
-			student.set_variables(random_Student_Variables(), 0, 0)
+			var SpriteHeadIndex = randi() % SpriteHeads.get_tiles_ids().size()
+			print(SpriteHeadIndex)
+			student.set_variables(random_Student_Variables(), SpriteHeadIndex, 0)
 			$Area/Students.add_child(student)
 	if Input.is_key_pressed(KEY_R):
 		if mode == BUILD:
@@ -191,47 +191,55 @@ func random_Student_Variables():
 func set_class(Classes, class_number, Magic):
 	var free = Zones.get_classes(class_number)
 	for i in Classes:
-		print(i)
 		if free.has(i):
 			free.erase(i)
 	if free.size() == 0:
 		return "FREE"
 	var BestClassNum = 0
 	var BestClass
+	var BestClassID
 	for i in free:
 		if i == "Abjuration":
 			if Magic[0] > BestClassNum:
 				BestClassNum = Magic[0]
 				BestClass = i
+				BestClassID = 0
 		elif i == "Alchemy":
 			if Magic[1] > BestClassNum:
 				BestClassNum = Magic[1]
 				BestClass = i
+				BestClassID = 1
 		elif i == "Beastology":
 			if Magic[2] > BestClassNum:
 				BestClassNum = Magic[2]
 				BestClass = i
+				BestClassID = 2
 		elif i == "Conjuration":
 			if Magic[3] > BestClassNum:
 				BestClassNum = Magic[3]
 				BestClass = i
+				BestClassID = 3
 		elif i == "Divination":
 			if Magic[4] > BestClassNum:
 				BestClassNum = Magic[4]
 				BestClass = i
+				BestClassID = 4
 		elif i == "Enchantment":
 			if Magic[5] > BestClassNum:
 				BestClassNum = Magic[5]
 				BestClass = i
+				BestClassID = 5
 		elif i == "Illusion":
 			if Magic[6] > BestClassNum:
 				BestClassNum = Magic[6]
 				BestClass = i
+				BestClassID = 6
 		elif i == "Nature":
 			if Magic[7] > BestClassNum:
 				BestClassNum = Magic[7]
 				BestClass = i
-		
+				BestClassID = 7
+	Zones.set_class(class_number, BestClassID)
 	return BestClass
 	
 
@@ -253,15 +261,15 @@ func Schedule():
 			update_Students("CLASS1")
 		elif hour == 10 and int(time) == 30:
 			update_Students("CLASS2")
-		elif hour == 12:
+		elif hour == 12 and int(time) == 00:
 			update_Students("Great Hall")
-		elif hour == 14:
+		elif hour == 14 and int(time) == 00:
 			update_Students("CLASS3")
 		elif hour == 15 and int(time) == 30:
 			update_Students("FREE")
 		elif hour == 17 and int(time) == 30:
 			update_Students("Great Hall")
-		elif hour == 21:
+		elif hour == 21 and int(time) == 00:
 			update_Students("Dorm")
 
 func update_Students(activity):

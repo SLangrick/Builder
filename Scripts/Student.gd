@@ -53,10 +53,11 @@ var Magic = []
 #var Nature = 0 #Elemental: Fireballs, Nature: Plants
 
 func _physics_process(delta):
+	
+	
 	match state:
 		IDLE:
 			#insert decision
-			
 			desired_location = Dorm
 			set_movement_location(desired_location)
 		MOVE:
@@ -74,8 +75,6 @@ func set_movement_location(location):
 	path_navigate = nav.get_simple_path(position, tile_pos, false)
 	state = MOVE
 
-func add_stats(classtype):
-	pass
 func remove_seat():
 	#Remove from seat array
 	if !desired_location == Dorm:
@@ -90,8 +89,9 @@ func set_free_location(location):
 	else:
 		set_activity(location)
 		
-
 func set_activity(activity):
+	if current_activity == Classes[0] or current_activity == Classes[1] or current_activity == Classes[2]:
+		add_stats()
 	#Setting the current activity
 	if activity == "CLASS1":
 		activity = Classes[0]
@@ -105,8 +105,8 @@ func set_activity(activity):
 		state = FREE
 		return
 	#Set seat or If no seats available then free
-	if Zones.get_class_seats(activity) > 0:
-		desired_location = Zones.set_class_seat(activity)
+	if Zones.get_zone_seats(activity) > 0:
+		desired_location = Zones.set_zone_seat(activity)
 		set_movement_location(desired_location)
 	else:
 		state = FREE
@@ -160,7 +160,7 @@ func movement_sprite_change(Vect: Vector2):
 func set_sprite(Direction):
 	#Direction = region offset
 	var head = Controller.Set_Head(head_Index, Gender, Direction)
-	var body = Controller.Set_Body(head_Index, Gender, Direction)
+	var body = Controller.Set_Body(body_Index, Gender, Direction)
 	$Node2D/Head.texture = head
 	$Node2D/Body.texture = body
 	
@@ -174,6 +174,7 @@ func _on_Player_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			print(str(Classes))
+			print(str(Magic))
 	else:
 		return
 #Variables on creation
@@ -192,7 +193,29 @@ func set_variables(Content, SpriteHead, SpriteBody):
 	
 	head_Index = SpriteHead
 	body_Index = SpriteBody
-func print_out():
+	
+func add_stats():
+	var MagicType = get_magic_number(current_activity)
+	Magic[MagicType] = Magic[MagicType] + 1 + (Spell[2]/10)
+	
+func get_magic_number(school):
+	if school == "Abjuration":
+		return 0
+	elif school  == "Alchemy":
+		return 1
+	elif school  == "Beastology":
+		return 2
+	elif school  == "Conjuration":
+		return 3
+	elif school == "Divination":
+		return 4
+	elif school  == "Enchantment":
+		return 5
+	elif school  == "Illusion":
+		return 6
+	elif school  == "Nature":
+		return 7
+
 	print("Gender " + str(Gender))
 	print("Name " + FirstName + " " + LastName)
 	print("Age " + str(Age))
