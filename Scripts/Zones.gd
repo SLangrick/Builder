@@ -70,7 +70,6 @@ func remove_assigned_seat(activity, seat):
 			i.free_seat(seat)
 			
 func add_zone(pos1, pos2, type):
-	print(type)
 	var obj = preload("res://Scripts/Zone.gd").new(pos1, pos2, type)
 	if type == "Abjuration":
 		obj.Is_Class = 0

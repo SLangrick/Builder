@@ -11,13 +11,11 @@ func _ready() -> void:
 
 
 func _on_Button_pressed() -> void:
-	print("Here")
 	get_tree().paused = false
 	queue_free()
 
 
 func _on_Button_focus_entered() -> void:
-	print("Here")
 	get_tree().paused = false
 	queue_free()
 

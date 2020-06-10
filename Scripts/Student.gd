@@ -193,7 +193,6 @@ func set_variables(Content, SpriteHead, SpriteBody):
 	Dorm = Content[7]
 	Classes = Content[8]
 	$lblName.text = str(FirstName) + " " + str(LastName)
-	print($lblName.text)
 	
 	head_Index = SpriteHead
 	body_Index = SpriteBody
@@ -220,8 +219,3 @@ func get_magic_number(school):
 	elif school  == "Nature":
 		return 7
 
-	print("Gender " + str(Gender))
-	print("Name " + FirstName + " " + LastName)
-	print("Age " + str(Age))
-	print("Grade " + str(Grade))
-	print("Alchemy " + str(Magic[1]))

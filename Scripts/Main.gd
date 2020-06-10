@@ -42,7 +42,7 @@ var mode = PLAY
 var tile = PATH
 
 func _ready() -> void:
-	print(ImportData.tile_data["Carpet"].Test.Test1)
+	#print(ImportData.tile_data["Carpet"].Test.Test1)
 	pass
 
 func _input(event: InputEvent) -> void:
@@ -50,9 +50,10 @@ func _input(event: InputEvent) -> void:
 		while Zones.get_dorm_beds() > 0:
 			var student = Student.instance()
 			var SpriteHeadIndex = randi() % SpriteHeads.get_tiles_ids().size()
-			print(SpriteHeadIndex)
 			student.set_variables(random_Student_Variables(), SpriteHeadIndex, 0)
+			student.position = Map.map_to_world(Vector2(10, 10))
 			$Area/Students.add_child(student)
+			
 	if Input.is_key_pressed(KEY_R):
 		if mode == BUILD:
 			if ImportData.tile_data[Zone_Selected].has("Rotate"):
@@ -187,8 +188,7 @@ func random_Student_Variables():
 	Classes.append(set_class(Classes,"CLASS1",Magic))
 	Classes.append(set_class(Classes,"CLASS2",Magic))
 	Classes.append(set_class(Classes,"CLASS3",Magic))
-	
-	print(str(Classes))
+
 	var Content = [Gender, FirstName[0], LastName[0], 11, 1, Spell, Magic, Dorm, Classes]
 	return Content
 
@@ -245,7 +245,7 @@ func set_class(Classes, class_number, Magic):
 				BestClassID = 7
 	Zones.set_class(class_number, BestClassID)
 	if BestClass == null:
-		print("here")
+		print("Error Best Class")
 	return BestClass
 	
 

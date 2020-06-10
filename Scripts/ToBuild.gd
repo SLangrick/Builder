@@ -11,7 +11,6 @@ func delete_assigned(vector):
 
 func set_Job():
 	var used = .get_used_cells()
-	
 	if !used.empty():
 		var unassigned = []
 		for v in used:
@@ -23,7 +22,6 @@ func set_Job():
 
 func Jobs():
 	var used = .get_used_cells()
-	
 	if !used.empty():
 		var unassigned = []
 		for v in used:
