@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.219608, 0.458824, 0.439216, 1 )
+
+[node name="HBoxContainer" type="HBoxContainer"]
+margin_right = 158.0
+margin_bottom = 31.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_top = 8.0
+margin_right = 100.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 100, 0 )
+text = "Testing"
+align = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 100, 0 )
+custom_styles/fg = SubResource( 1 )
+value = 30.0

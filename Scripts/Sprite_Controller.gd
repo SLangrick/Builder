@@ -19,3 +19,7 @@ func Set_Body(Index, Gender, Direction):
 	SpriteBody.region= SpriteBody.region.grow_individual(0,0,-96,0)
 	SpriteBody.region.position = Vector2(Direction, 0)
 	return SpriteBody
+
+func Open_GUI():
+	var m = preload("res://GUI_Test.tscn").instance()
+	$"../../CanvasLayer/CenterContainer".add_child( m )

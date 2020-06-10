@@ -177,8 +177,8 @@ func _on_Player_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 	
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			print(str(Classes))
-			print(str(Magic))
+			Global.StudentChildID = get_index()
+			Controller.Open_GUI()
 	else:
 		return
 #Variables on creation

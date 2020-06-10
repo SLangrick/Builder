@@ -3,7 +3,11 @@
     "Type": "Floor",
     "Resource": "Cloth",
     "Needed": 3,
-	"Visible": "True"
+	"Visible": "True",
+	"Test": {
+		"Test1": "Test1Output",
+		"Test2": "Test2"
+	}
   },
   "Grass": {
     "Type": "Floor",

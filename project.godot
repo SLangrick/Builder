@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ImportData="*res://Scripts/ImportData.gd"
+Global="*res://Global.gd"
 
 [global]
 

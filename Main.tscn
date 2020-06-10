@@ -25,7 +25,7 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 
 [node name="Zones" type="TileMap" parent="Area"]
 modulate = Color( 1, 1, 1, 0.345098 )
-position = Vector2( 1, 0 )
+position = Vector2( 0, 1 )
 tile_set = ExtResource( 9 )
 cell_size = Vector2( 32, 32 )
 format = 1
@@ -43,6 +43,7 @@ tile_data = PoolIntArray( 458754, 8, 0, 458756, 8, 0, 458758, 8, 0, 524290, 8, 0
 
 [node name="ToBuild" type="TileMap" parent="Area"]
 modulate = Color( 1, 1, 1, 0.658824 )
+position = Vector2( 0, 1 )
 tile_set = ExtResource( 9 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 0
@@ -52,6 +53,7 @@ tile_data = PoolIntArray( 393227, 2, 0, 393228, 2, 0, 393229, 2, 0, 393230, 2, 0
 script = ExtResource( 8 )
 
 [node name="Highlight" type="TileMap" parent="Area"]
+position = Vector2( 0, 1 )
 tile_set = ExtResource( 9 )
 cell_size = Vector2( 32, 32 )
 format = 1
@@ -75,24 +77,15 @@ margin_left = 16.8688
 margin_top = 13.1109
 margin_right = 56.8688
 margin_bottom = 27.1109
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tabs" type="Tabs" parent="CanvasLayer"]
-margin_left = 30.9058
-margin_top = 85.8265
-margin_right = 278.906
-margin_bottom = 270.827
+text = "Time"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ItemList" type="ItemList" parent="CanvasLayer"]
-visible = false
 margin_left = 155.0
 margin_top = 508.0
-margin_right = 1024.0
+margin_right = 1012.0
 margin_bottom = 600.0
 focus_mode = 0
 __meta__ = {
@@ -154,6 +147,13 @@ margin_right = 62.0
 margin_bottom = 92.0
 focus_mode = 0
 text = "Objects"
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="Mode_Change" from="CanvasLayer" to="." method="_on_CanvasLayer_Mode_Change"]
 [connection signal="item_selected" from="CanvasLayer/ItemList" to="CanvasLayer" method="_on_ItemList_item_selected"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Button" to="CanvasLayer" method="_on_Button_pressed"]

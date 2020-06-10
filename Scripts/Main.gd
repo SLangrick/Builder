@@ -42,6 +42,7 @@ var mode = PLAY
 var tile = PATH
 
 func _ready() -> void:
+	print(ImportData.tile_data["Carpet"].Test.Test1)
 	pass
 
 func _input(event: InputEvent) -> void:
@@ -71,6 +72,11 @@ func _input(event: InputEvent) -> void:
 		update_Students("CLASS3")
 	if Input.is_key_pressed(KEY_4):
 		update_Students("FREE")
+	if Input.is_key_pressed( KEY_ESCAPE ):
+		var m = preload("res://GUI_Test.tscn").instance()
+		$CanvasLayer.add_child( m )
+	
+	
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if mode == PLAY:
@@ -127,7 +133,6 @@ func _on_CanvasLayer_Mode_Change() -> void:
 		$CanvasLayer/HBoxContainer/Button.text = "Build Mode"
 		$CanvasLayer/HBoxContainer/Button.update()
 		$CanvasLayer/ItemList.visible = true
-		$CanvasLayer/Tabs.visible = true
 		
 		$Area/Zones.visible = true
 	else:
@@ -135,7 +140,6 @@ func _on_CanvasLayer_Mode_Change() -> void:
 		$CanvasLayer/HBoxContainer/Button.text = "Play Mode"
 		$CanvasLayer/HBoxContainer/Button.update()
 		$CanvasLayer/ItemList.visible = false
-		$CanvasLayer/Tabs.visible = false
 		
 		$Area/Zones.visible = false
 
